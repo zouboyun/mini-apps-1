@@ -9,11 +9,15 @@ var clickHandler = event => {
         currentPlayer.textContent = 'X';
     }
 };
+var resetGame = event => {
+    currentPlayer.textContent = 'X';
+    Array.from(squares).forEach(square => {
+        square.textContent = '';
+    });
+};
 
 Array.from(squares).forEach(square => {
     square.addEventListener('click', clickHandler);
-})
-
-resetBtn.addEventListener('click', event => {
-    window.location.reload();
 });
+
+resetBtn.addEventListener('click', resetGame);
