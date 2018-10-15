@@ -2,19 +2,22 @@
 var squares = Array.from(document.getElementsByClassName('square'));
 var currentPlayer = document.getElementById('player');
 var resetBtn = document.getElementById('reset');
-
+var result = document.getElementById('msg');
 
 /************************ define event handlers ************************/
 var clickHandler = event => {
-    event.target.textContent = currentPlayer.textContent;
-    if (currentPlayer.textContent === 'X') {
-        currentPlayer.textContent = 'O';
-    } else {
-        currentPlayer.textContent = 'X';
+    if (event.target.textContent !== 'O' && event.target.textContent !== 'X') {
+        event.target.textContent = currentPlayer.textContent;
+        if (currentPlayer.textContent === 'X') {
+            currentPlayer.textContent = 'O';
+        } else {
+            currentPlayer.textContent = 'X';
+        }
     }
     // check if there is a win or tie
-    if (calculateWinner() !== null) {
-        console.log('winner is ', calculateWinner());
+    var winner = calculateWinner();
+    if (winner !== null) {
+        result.textContent = 'winner is ' + winner + '!!!';
     }
 };
 var resetGame = event => {
@@ -22,6 +25,7 @@ var resetGame = event => {
     squares.forEach(square => {
         square.textContent = '';
     });
+    result.textContent = '';
 };
 
 /************************ define helper functions ************************/
