@@ -7,12 +7,16 @@ var result = document.getElementById('msg');
 var xWinTime = document.getElementById('xhaswon');
 var oWinTime = document.getElementById('ohaswon');
 var pwinner = document.getElementById('pwinner');
+var playerOne = Array.from(document.getElementsByClassName('player1'));
+var playerTwo = Array.from(document.getElementsByClassName('player2'));
 
 /************************ define data storage for state management ************************/
+var player1 = prompt('Player one please enter your name here...');
+var player2 = prompt('Player two please enter your name here...');
 var squareList = Array(9).fill(null);
 var isNextMoveX = true;
 var previousWinner = '';
-var nextPlayer = 'X';
+var nextPlayer = player1;
 var msg = '';
 var clickedCount = 0;
 var xHasWon = 0;
@@ -24,16 +28,17 @@ var clickHandler = (index) => {
     if (squares[index] === null) {
         squares[index] = isNextMoveX ? 'X' : 'O';
         squareList = squares;
-        nextPlayer = isNextMoveX ? 'O' : 'X';
+        nextPlayer = isNextMoveX ? player2 : player1;
         isNextMoveX = !isNextMoveX;
         clickedCount++;
     }
     // check if there is a win or tie
     var winner = calculateWinner();
     if (winner !== null) {
+        winner === 'X' ? winner = player1 : winner = player2;
         msg = 'winner is ' + winner + '!!!';
         previousWinner = winner;
-        winner === 'X' ? xHasWon++ : oHasWon++;
+        winner === player1 ? xHasWon++ : oHasWon++;
     } else if (clickedCount === 9) {
         msg = 'you tied!!!';
     }
@@ -41,7 +46,7 @@ var clickHandler = (index) => {
 
 var resetGame = event => {
     nextPlayer = previousWinner;
-    isNextMoveX = nextPlayer === 'X' ? true : false;
+    isNextMoveX = nextPlayer === player1 ? true : false;
     squareList = Array(9).fill(null);
     msg = '';
     clickedCount = 0;
@@ -78,7 +83,13 @@ var renderPage = () => {
     squares.forEach((square, index) => {
         // point dom value to our local object value
         square.textContent = squareList[index];
-    });    
+    });
+    playerOne.forEach(player => {
+        player.textContent = player1;
+    });
+    playerTwo.forEach(player => {
+        player.textContent = player2;
+    });
 };
 
 /************************ initial rendering & add event handlers to nodes ************************/

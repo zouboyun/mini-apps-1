@@ -6,17 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Tic Tac Toe</title>
     <style>
-        h1, h3 {
+        h1{
             text-align: center;
-        }
-        #msg {
-            color: red;
         }
         .wrapper {
             display: flex;
             align-items: center;
             justify-content: center;
             padding-bottom: 20px;
+            padding-top: 20px;
         }
         table {
             text-align: center;
@@ -61,19 +59,45 @@
         .clicked:hover {
             background-color: rgb(255, 140, 230);
         }
+        .gamers {
+            font-family: futura;
+            font-style: italic;
+            width:100%;
+            margin: 0 auto;
+            text-align: center;
+            color: #313131;
+            font-size: 20px;
+            font-weight: bold;
+            -webkit-animation: colorchange 10s infinite alternate;
+        }
+
+    @-webkit-keyframes colorchange {
+      0% { color: blue; }
+      10% { color: #8e44ad;}
+      20% { color: #1abc9c;}
+      30% { color: #d35400;}
+      40% { color: blue;}
+      50% { color: #34495e;}
+      60% { color: blue;}
+      70% { color: #2980b9;}
+      80% { color: #f1c40f;}
+      90% { color: #2980b9;}
+      100% { color: pink;}
+    }
     </style>
 </head>
 <body>
     <h1>Tic Tac Toe Game</h1>
-    <h3 id="msg"></h3>
+    <p class="gamers"><span class="player1"></span> vs <span class="player2"></span></p>
+    <p id="msg" class="gamers"></p>
     <div class="wrapper">
         <button id="reset">reset game</button>
     </div>
     <table id="board">
         <tr>
-            <th>Next Player: <span id="player">X</span></th>
+            <th>Next Player: <span id="player"></span></th>
             <th>Previous Winner: <span id="pwinner"></span></th>
-            <th>X has won: <span id="xhaswon"></span> <br> O has won: <span id="ohaswon"></span></th>
+            <th><span class="player1"></span> has won: <span id="xhaswon"></span> <br> <span class="player2"></span> has won: <span id="ohaswon"></span></th>
         </tr>
         <tr>
             <td class="square" id="0"></td>
