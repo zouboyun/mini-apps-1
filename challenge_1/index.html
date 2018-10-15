@@ -9,6 +9,12 @@
     h1, h3 {
         text-align: center;
     }
+    .wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding-bottom: 20px;
+    }
     table, th, td {
         border: 1px solid black;
         border-collapse: collapse;
@@ -39,6 +45,9 @@
 <body>
     <h1>Tic Tac Toe Game</h1>
     <h3>Player: <span id="player">X</span></h3>
+    <div class="wrapper">
+        <button id="reset">reset game</button>
+    </div>
     <table id="board">
         <tr>
             <td class="square"></td>
