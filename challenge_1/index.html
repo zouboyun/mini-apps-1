@@ -24,18 +24,15 @@
         width: 33.33%;
         position: relative;
     }
+    td:before {
+        content: '';
+        display: block;
+        margin-bottom: 50%;
+    }
     td:after {
         content: '';
         display: block;
-        margin-top: 100%;
-    }
-    td .content {
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        background: gold;
+        margin-top: 50%;
     }
     </style>
 </head>
@@ -44,19 +41,19 @@
     <h3>Player: <span id="player">X</span></h3>
     <table id="board">
         <tr>
-            <td>1</td>
-            <td>2</td>
-            <td>3</td>
+            <td class="square"></td>
+            <td class="square"></td>
+            <td class="square"></td>
         </tr>
         <tr>
-            <td>1</td>
-            <td>2</td>
-            <td>3</td>
+            <td class="square"></td>
+            <td class="square"></td>
+            <td class="square"></td>
         </tr>
         <tr>
-            <td>1</td>
-            <td>2</td>
-            <td>3</td>
+            <td class="square"></td>
+            <td class="square"></td>
+            <td class="square"></td>
         </tr>
     </table>
     <script src="./app.js"></script>
