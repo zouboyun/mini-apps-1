@@ -8,6 +8,7 @@ var result = document.getElementById('msg');
 var clickHandler = event => {
     if (event.target.textContent !== 'O' && event.target.textContent !== 'X') {
         event.target.textContent = currentPlayer.textContent;
+        event.target.classList.add('clicked');
         if (currentPlayer.textContent === 'X') {
             currentPlayer.textContent = 'O';
         } else {
