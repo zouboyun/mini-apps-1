@@ -4,14 +4,19 @@ var board = document.getElementById('board');
 var currentPlayer = document.getElementById('player');
 var resetBtn = document.getElementById('reset');
 var result = document.getElementById('msg');
-var clickedCount = 0;
+var xWinTime = document.getElementById('xhaswon');
+var oWinTime = document.getElementById('ohaswon');
+var pwinner = document.getElementById('pwinner');
 
 /************************ define data storage for state management ************************/
 var squareList = Array(9).fill(null);
 var isNextMoveX = true;
-var previousWinner = 'X';
-var nextPlayer = previousWinner;
+var previousWinner = '';
+var nextPlayer = 'X';
 var msg = '';
+var clickedCount = 0;
+var xHasWon = 0;
+var oHasWon = 0;
 
 /************************ define event handlers ************************/
 var clickHandler = (index) => {
@@ -28,6 +33,7 @@ var clickHandler = (index) => {
     if (winner !== null) {
         msg = 'winner is ' + winner + '!!!';
         previousWinner = winner;
+        winner === 'X' ? xHasWon++ : oHasWon++;
     } else if (clickedCount === 9) {
         msg = 'you tied!!!';
     }
@@ -66,6 +72,9 @@ var calculateWinner = () => {
 var renderPage = () => {
     currentPlayer.textContent = nextPlayer;
     result.textContent = msg;
+    xWinTime.textContent = xHasWon;
+    oWinTime.textContent = oHasWon;
+    pwinner.textContent = previousWinner;
     squares.forEach((square, index) => {
         // point dom value to our local object value
         square.textContent = squareList[index];

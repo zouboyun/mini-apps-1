@@ -6,61 +6,75 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Tic Tac Toe</title>
     <style>
-    h1, h3, h5 {
-        text-align: center;
-    }
-    #msg {
-        color: red;
-    }
-    .wrapper {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding-bottom: 20px;
-    }
-    table, th, td {
-        border: 1px solid black;
-        border-collapse: collapse;
-        text-align: center;
-        margin-left:auto; 
-        margin-right:auto;
-    }
-    table {
-        width: 30%;
-
-    }
-    td {
-        width: 33.33%;
-        position: relative;
-        margin-bottom: 50%;
-        margin-top: 50%;
-    }
-    td:before {
-        content: '';
-        display: block;
-        margin-bottom: 50%;
-    }
-    td:after {
-        content: '';
-        display: block;
-        margin-top: 50%;
-    }
-    .square:hover {
-        background-color: rgb(0, 255, 50);
-    }
-    .clicked:hover {
-        background-color: rgb(255, 140, 230);
-    }
+        h1, h3 {
+            text-align: center;
+        }
+        #msg {
+            color: red;
+        }
+        .wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-bottom: 20px;
+        }
+        table {
+            text-align: center;
+            margin-left:auto; 
+            margin-right:auto;
+        }
+        td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            text-align: center;
+            margin-left:auto; 
+            margin-right:auto;
+        }
+        table {
+            width: 50%;
+            height: 50%;
+        }
+        tr th {
+            border: 0;
+            border-top: 0;
+            font-size: 95%;
+        }
+        td {
+            width: 33.33%;
+            position: relative;
+            margin-bottom: 50%;
+            margin-top: 50%;
+        }
+        td:before {
+            content: '';
+            display: block;
+            margin-bottom: 50%;
+        }
+        td:after {
+            content: '';
+            display: block;
+            margin-top: 50%;
+        }
+        .square:hover {
+            background-color: rgb(0, 255, 50);
+        }
+        .clicked:hover {
+            background-color: rgb(255, 140, 230);
+        }
     </style>
 </head>
 <body>
     <h1>Tic Tac Toe Game</h1>
-    <h3>Next Player: <span id="player">X</span></h3>
-    <h5 id="msg"></h5>
+    <h3 id="msg"></h3>
     <div class="wrapper">
         <button id="reset">reset game</button>
     </div>
     <table id="board">
+        <tr>
+            <th>Next Player: <span id="player">X</span></th>
+            <th>Previous Winner: <span id="pwinner"></span></th>
+            <th>X has won: <span id="xhaswon"></span> <br> O has won: <span id="ohaswon"></span></th>
+        </tr>
         <tr>
             <td class="square" id="0"></td>
             <td class="square" id="1"></td>
@@ -77,6 +91,7 @@
             <td class="square" id="8"></td>
         </tr>
     </table>
+
     <script src="./app.js"></script>
 </body>
 </html>
