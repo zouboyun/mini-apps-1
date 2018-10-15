@@ -1,38 +1,45 @@
 /************************ select DOM nodes ************************/
 var squares = Array.from(document.getElementsByClassName('square'));
+var board = document.getElementById('board');
 var currentPlayer = document.getElementById('player');
 var resetBtn = document.getElementById('reset');
 var result = document.getElementById('msg');
 var clickedCount = 0;
 
+/************************ define data storage for state management ************************/
+var squareList = Array(9).fill(null);
+var isNextMoveX = true;
+var previousWinner = 'X';
+var nextPlayer = previousWinner;
+var msg = '';
+
 /************************ define event handlers ************************/
-var clickHandler = event => {
-    if (event.target.textContent !== 'O' && event.target.textContent !== 'X') {
-        event.target.textContent = currentPlayer.textContent;
+var clickHandler = (index) => {
+    var squares = squareList.slice();
+    if (squares[index] === null) {
+        squares[index] = isNextMoveX ? 'X' : 'O';
+        squareList = squares;
+        nextPlayer = isNextMoveX ? 'O' : 'X';
+        isNextMoveX = !isNextMoveX;
         clickedCount++;
-        event.target.classList.add('clicked');
-        if (currentPlayer.textContent === 'X') {
-            currentPlayer.textContent = 'O';
-        } else {
-            currentPlayer.textContent = 'X';
-        }
     }
     // check if there is a win or tie
     var winner = calculateWinner();
     if (winner !== null) {
-        result.textContent = 'winner is ' + winner + '!!!';
+        msg = 'winner is ' + winner + '!!!';
+        previousWinner = winner;
     } else if (clickedCount === 9) {
-        result.textContent = 'you tied!!!';
+        msg = 'you tied!!!';
     }
 };
+
 var resetGame = event => {
-    currentPlayer.textContent = 'X';
-    squares.forEach(square => {
-        square.textContent = '';
-        square.classList.remove('clicked');
-    });
-    result.textContent = '';
+    nextPlayer = previousWinner;
+    isNextMoveX = nextPlayer === 'X' ? true : false;
+    squareList = Array(9).fill(null);
+    msg = '';
     clickedCount = 0;
+    renderPage();
 };
 
 /************************ define helper functions ************************/
@@ -49,16 +56,28 @@ var calculateWinner = () => {
       ];
     for (let i = 0; i < lines.length; i++) {
         const [a, b, c] = lines[i];
-        if (squares[a].textContent && squares[a].textContent === squares[b].textContent && squares[b].textContent === squares[c].textContent) {
-            return squares[a].textContent;
+        if (squareList[a] && squareList[a] === squareList[b] && squareList[b] === squareList[c]) {
+            return squareList[a];
         }
     }
     return null;
 };
 
-/************************ add event handlers to nodes ************************/
-squares.forEach(square => {
-    square.addEventListener('click', clickHandler);
+var renderPage = () => {
+    currentPlayer.textContent = nextPlayer;
+    result.textContent = msg;
+    squares.forEach((square, index) => {
+        // point dom value to our local object value
+        square.textContent = squareList[index];
+    });    
+};
+
+/************************ initial rendering & add event handlers to nodes ************************/
+renderPage();
+
+board.addEventListener('click', (e) => {
+    clickHandler(e.target.id);
+    renderPage();
 });
 
 resetBtn.addEventListener('click', resetGame);
