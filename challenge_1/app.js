@@ -92,6 +92,14 @@ var renderPage = () => {
     });
 };
 
+// var addGravity = (index) => {
+    
+// };
+
+// var addRotation = (index) => {
+
+// };
+
 /************************ initial rendering & add event handlers to nodes ************************/
 renderPage();
 
