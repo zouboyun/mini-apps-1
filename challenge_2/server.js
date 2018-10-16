@@ -1,7 +1,7 @@
 /*********************** require express ***********************/
 var express = require('express');
 var bodyParser = require('body-parser');
-// var CSVGenerator = require('./models.js');
+var CSVGenerator = require('./models.js');
 var app = express();
 
 /*********************** configure app ***********************/
@@ -18,8 +18,8 @@ app.get('/upload_json', (req, res) => {
 });
 
 app.post('/upload_json', (req, res) => {
-    // var csv = CSVGenerator(JSON.parse(req.body.data));
-    res.render('index');
+    var csv = CSVGenerator(JSON.parse(req.body.data));
+    res.status(201).end(JSON.stringify({result: csv}));
 });
 
 /*********************** start server ***********************/
