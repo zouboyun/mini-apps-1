@@ -1,6 +1,3 @@
-var form = document.getElementById('form');
-var jsonData = document.getElementById('json');
-var resultData = document.getElementById('resultData');
 var CSVGenerator = (obj) => {
     var keys = [];
     var values = [];
@@ -27,7 +24,4 @@ var CSVGenerator = (obj) => {
     return result;
 };
 
-form.addEventListener('submit', e => {
-    e.preventDefault();
-    resultData.textContent = CSVGenerator(JSON.parse(jsonData.value));
-});
+module.exports = CSVGenerator;
