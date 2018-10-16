@@ -10,12 +10,13 @@
 <body>
     <h1>CSV Report Generator</h1>
     <div class="container">
-        <form action="/upload_json" method="post">
+        <form action="/upload_json" method="post" id="form">
             <label for="data">Enter your JSON data below: </label>
             <textarea name="data" id="json" cols="100" rows="10"></textarea>
             <input type="submit" value="Submit!">
         </form>
     </div>
+    <p id="result"></p>
     <script src="./app.js"></script>
 </body>
 </html>
