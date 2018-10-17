@@ -1,1 +1,7 @@
 public/app.js
+
+# Dependency directories
+node_modules/
+
+# compiled files from babel
+public/
