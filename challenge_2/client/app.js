@@ -29,7 +29,13 @@ fileBtn.addEventListener('click', e => {
 form.addEventListener('submit', e => {
     var data = jsonData.value;
     e.preventDefault();
-    fetchData(data);
+    fetchData(data, (err, result) => {
+        downloadBtn.addEventListener('click', e => {
+            e.target.href = 'data:text/csv;charset=utf-8,' + encodeURI(result);
+            e.target.target = '_blank';
+            e.target.download = 'data.csv';
+        });
+    });
 });
 
 var fetchData = (data, callback) => {
