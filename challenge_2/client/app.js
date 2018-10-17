@@ -13,11 +13,7 @@ fileBtn.addEventListener('click', e => {
         reader.onload =  (evt) => {
             var data = evt.target.result;
             fetchData(data, (err, result) => {
-                downloadBtn.addEventListener('click', e => {
-                    e.target.href = 'data:text/csv;charset=utf-8,' + encodeURI(result);
-                    e.target.target = '_blank';
-                    e.target.download = 'data.csv';
-                });
+                downloadData(result);
             });
         }
         reader.onerror =  (evt) => {
@@ -30,11 +26,7 @@ form.addEventListener('submit', e => {
     var data = jsonData.value;
     e.preventDefault();
     fetchData(data, (err, result) => {
-        downloadBtn.addEventListener('click', e => {
-            e.target.href = 'data:text/csv;charset=utf-8,' + encodeURI(result);
-            e.target.target = '_blank';
-            e.target.download = 'data.csv';
-        });
+        downloadData(result);
     });
 });
 
@@ -52,5 +44,13 @@ var fetchData = (data, callback) => {
     .then(data => {
         resultData.textContent = data.result;
         callback(null, data.result);
+    });
+};
+
+var downloadData = result => {
+    downloadBtn.addEventListener('click', e => {
+        e.target.href = 'data:text/csv;charset=utf-8,' + encodeURI(result);
+        e.target.target = '_blank';
+        e.target.download = 'data.csv';
     });
 };
