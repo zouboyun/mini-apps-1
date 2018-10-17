@@ -14,7 +14,10 @@ app.use(express.static(__dirname + '/public'));
 
 
 /*********************** configure routes ***********************/
-
+app.post('/checkout', (req, res) => {
+    console.log(typeof req.body.data, req.body.data);
+    
+});
 
 
 /*********************** start server ***********************/

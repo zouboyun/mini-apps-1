@@ -133,6 +133,13 @@ class Form3 extends React.Component {
 
 
     handlePlaceOrder(e) {
+        fetch('/checkout', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({data: this.state})
+        });
         e.preventDefault();
     }
 
