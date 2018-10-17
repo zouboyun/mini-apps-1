@@ -14,9 +14,7 @@ app.use(express.static(__dirname + '/public'));
 
 
 /*********************** configure routes ***********************/
-app.get('/', (req, res) => {
-    res.render('index');
-});
+
 
 
 /*********************** start server ***********************/
