@@ -11,7 +11,10 @@
   "author": "zouboyun",
   "license": "ISC",
   "dependencies": {
-    "babel-cli": "^6.26.0"
+    "babel-cli": "^6.26.0",
+    "body-parser": "^1.18.3",
+    "ejs": "^2.6.1",
+    "express": "^4.16.4"
   },
   "devDependencies": {
     "babel-preset-env": "^1.7.0",
