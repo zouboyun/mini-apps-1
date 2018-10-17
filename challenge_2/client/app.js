@@ -3,7 +3,7 @@ var resultData = document.getElementById('resultData');
 var jsonData = document.getElementById('json');
 var fileBtn = document.getElementById('submitFile');
 var downloadBtn = document.getElementById('download');
-
+var rowId = document.getElementById('identifier');
 
 fileBtn.addEventListener('click', e => {
     var fileData = document.getElementById('file').files[0];
@@ -13,6 +13,7 @@ fileBtn.addEventListener('click', e => {
         reader.onload =  (evt) => {
             var data = evt.target.result;
             fetchData(data, (err, result) => {
+                resultData.textContent = result;
                 downloadData(result);
             });
         }
@@ -26,6 +27,7 @@ form.addEventListener('submit', e => {
     var data = jsonData.value;
     e.preventDefault();
     fetchData(data, (err, result) => {
+        resultData.textContent = result;
         downloadData(result);
     });
 });
@@ -42,7 +44,14 @@ var fetchData = (data, callback) => {
         return response.json();
     })
     .then(data => {
-        resultData.textContent = data.result;
+        if (rowId.checked) {
+            var arr = data.result.split('\r\n');
+            arr[0] = 'rowId,' + arr[0];
+            for (var i = 1; i < arr.length; i++) {
+                arr[i] = String(i) + ',' + arr[i];
+            }
+            data.result = arr.join('\r\n');
+        }
         callback(null, data.result);
     });
 };

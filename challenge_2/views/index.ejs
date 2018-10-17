@@ -10,6 +10,10 @@
 <body>
     <h1>CSV Report Generator</h1>
     <div class="container">
+        <label for="identifier">Generate Row Identifiers</label>
+        <input type="checkbox" id="identifier"/>
+    </div>
+    <div class="container">
         <form action="/upload_json" method="post" id="form">
             <label for="data">Paste your JSON data here: </label>
             <textarea name="data" id="json" cols="100" rows="10"></textarea>
