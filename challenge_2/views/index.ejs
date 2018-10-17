@@ -11,13 +11,22 @@
     <h1>CSV Report Generator</h1>
     <div class="container">
         <form action="/upload_json" method="post" id="form">
-            <label for="data">Enter your JSON data below: </label>
+            <label for="data">Paste your JSON data here: </label>
             <textarea name="data" id="json" cols="100" rows="10"></textarea>
-            <input type="submit" value="Submit!">
+            <input type="submit" value="Submit!" class="submit">
         </form>
     </div>
+    <div class="container">
+        <label for="file">Select JSON file here: </label>
+        <input type="file" name="data" id="file" accept=".json">
+        <button id="submitFile">Generate CSV File</button>
+    </div>
+    <div class="container">
+        <label for="file">Download CSV file here: </label>
+        <button><a id="download">Download CSV File</a></button>
+    </div>
     <div id="result" class="container">
-            <label for="resultData">See your CSV results here: </label>
+            <label for="resultData">See your CSV data here: </label>
             <textarea name="resultData" id="resultData" cols="100" rows="10"></textarea>
     </div>
     <script src="./app.js"></script>
