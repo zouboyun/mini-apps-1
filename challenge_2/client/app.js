@@ -53,4 +53,4 @@ var fetchData = (data, callback) => {
         resultData.textContent = data.result;
         callback(null, data.result);
     });
-}
+};
