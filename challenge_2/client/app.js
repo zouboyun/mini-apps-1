@@ -31,7 +31,7 @@ form.addEventListener('submit', e => {
 });
 
 var fetchData = (data, callback) => {
-    fetch('http://localhost:1337/upload_json', {
+    fetch('/upload_json', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
