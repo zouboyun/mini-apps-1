@@ -29,12 +29,18 @@ class Form1 extends React.Component {
         this.handleInputChange = this.handleInputChange.bind(this);
     }
 
+    componentDidMount() {
+        if (this.props.states) {
+            this.setState(this.props.states);
+        }
+    }
+
     handleInputChange(e) {
         this.setState({[e.target.id]: e.target.value});
     }
 
     handleNextForm(e) {
-        ReactDOM.render(<Form2 states={this.state}/>, document.getElementById('app'));
+        ReactDOM.render(<Form2 states={this.state} />, document.getElementById('app'));
         e.preventDefault();
     }
 
@@ -65,7 +71,7 @@ class Form1 extends React.Component {
 class Form2 extends React.Component {
     constructor(props) {
         super(props);
-        this.state = this.props.states;
+        this.state = {};
         this.state.ad1 = '';
         this.state.ad2 = '';
         this.state.city = '';
@@ -73,6 +79,12 @@ class Form2 extends React.Component {
         this.state.szp = '';
         this.state.phone = '';
         this.handleInputChange = this.handleInputChange.bind(this);
+    }
+
+    componentDidMount() {
+        if (this.props.states) {
+            this.setState(this.props.states);
+        }
     }
 
     handleInputChange(e) {
@@ -85,7 +97,7 @@ class Form2 extends React.Component {
     }
 
     handlePreviousForm(e) {
-        ReactDOM.render(<Form1 />, document.getElementById('app'));
+        ReactDOM.render(<Form1 states={this.state}/>, document.getElementById('app'));
         e.preventDefault();
     }
 
@@ -117,7 +129,7 @@ class Form2 extends React.Component {
 class Form3 extends React.Component {
     constructor(props) {
         super(props);
-        this.state = this.props.states;
+        this.state = {};
         this.state.cc = '';
         this.state.ed = '';
         this.state.cvv = '';
@@ -125,10 +137,14 @@ class Form3 extends React.Component {
         this.handleInputChange = this.handleInputChange.bind(this);
     }
 
+    componentDidMount() {
+        if (this.props.states) {
+            this.setState(this.props.states);
+        }
+    }
+
     handleInputChange(e) {
         this.setState({[e.target.id]: e.target.value});
-        console.log('target id', e.target.id, 'target value', e.target.value);
-        console.log('current state', this.state);
     }
 
 
@@ -139,12 +155,15 @@ class Form3 extends React.Component {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({data: this.state})
+        })
+        .then(response => {
+            ReactDOM.render(<App />, document.getElementById('app')); 
         });
         e.preventDefault();
     }
 
     handlePreviousForm(e) {
-        ReactDOM.render(<Form2 />, document.getElementById('app'));
+        ReactDOM.render(<Form2 states={this.state}/>, document.getElementById('app'));
         e.preventDefault();
     }
 
