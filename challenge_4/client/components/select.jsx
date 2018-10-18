@@ -5,7 +5,22 @@ class SelectBar extends React.Component {
     }
 
     handleClick(e) {
-        console.log(e.target.id);
+        var children = document.getElementsByClassName('row-' + e.target.id);
+        for (var i = children.length - 1; i >= 0; i--) {
+            if(!children[i].classList.contains('checked')) {
+                children[i].classList.add('checked');
+                var currentPlayer = this.props.parentState.currentPlayer;
+                if (currentPlayer === 'red') {
+                    children[i].classList.add('red');
+                    currentPlayer = 'black';
+                } else {
+                    children[i].classList.add('black');
+                    currentPlayer = 'red';
+                }
+                this.props.changeParenState({ currentPlayer });
+                break;
+            }
+        }
     }
 
     render () {

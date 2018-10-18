@@ -19,7 +19,7 @@ class Square extends React.Component {
     render() {
         return (
           <div className="square">
-              <div className="circle">
+              <div className={`row-${this.state.x} col-${this.state.y} circle`}>
                   {this.state.x},
                   {this.state.y}
               </div>

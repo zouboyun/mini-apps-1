@@ -22,7 +22,7 @@ class Board extends React.Component {
     render() {
         return (
             <div>
-                <SelectBar changeParenState={this.changeParenState}/>
+                <SelectBar changeParenState={this.changeParenState} parentState={this.state}/>
                 <div className="board">
                     {this.renderRow(0)}
                     {this.renderRow(1)}
