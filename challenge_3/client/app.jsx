@@ -52,14 +52,14 @@ class Form1 extends React.Component {
     render() {
         return (
             <div className="container">
-                <h1>Sign In Here</h1>
+                <h2>Sign In Here</h2>
                 <form>
                     <label>Name</label>
-                    <input type="text" id="name" value={this.state.name} placeholder="i.e. John Doe" onChange={this.handleInputChange}/>
+                    <input type="text" id="name" value={this.state.name} placeholder="i.e. John Doe" onChange={this.handleInputChange} required/>
                     <label>Email</label>
-                    <input type="email" id="email" value={this.state.email} placeholder="i.e. johndoe@johndoe.com" onChange={this.handleInputChange}/>
+                    <input type="email" id="email" value={this.state.email} placeholder="i.e. johndoe@johndoe.com" onChange={this.handleInputChange} required/>
                     <label>Password</label>
-                    <input type="password" id="password" value={this.state.password} placeholder="i.e. #$^AFSDe23" onChange={this.handleInputChange}/>
+                    <input type="password" id="password" value={this.state.password} placeholder="i.e. #$^AFSDe23" onChange={this.handleInputChange} required/>
                     <button id="backtohome" className="big-btn" onClick={this.handlePreviousForm.bind(this)}>PREVIOUS</button>
                     <button id="forwardtoform2" className="big-btn" onClick={this.handleNextForm.bind(this)}>NEXT</button>
                 </form>
@@ -104,7 +104,7 @@ class Form2 extends React.Component {
     render() {
         return (
             <div className="container">
-            <h1>Shipping Information Here</h1>
+            <h2>Shipping Information Here</h2>
             <form>
                 <label>Address</label>
                 <input type="text" id="ad1" value={this.state.ad1} placeholder="i.e. 944 Market St" onChange={this.handleInputChange} />
@@ -170,7 +170,7 @@ class Form3 extends React.Component {
     render() {
         return (
             <div className="container">
-            <h1>Payment Information Here</h1>
+            <h2>Payment Information Here</h2>
             <form>
                 <label>Credit Card Number</label>
                 <input type="text" id="cc" value={this.state.cc} placeholder="i.e. 123456789123"  onChange={this.handleInputChange}/>
