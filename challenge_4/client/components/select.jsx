@@ -14,12 +14,16 @@ class SelectBar extends React.Component {
                 if (currentPlayer === 'red') {
                     children[i].classList.add('red');
                     currentMoves[i][e.target.id] = 'red';
-                    console.log(this.props.checkForWinner(i, Number(e.target.id), currentMoves, currentPlayer));
+                    if (this.props.checkForWinner(i, Number(e.target.id), currentMoves, currentPlayer)) {
+                        document.getElementById('winner').textContent = currentPlayer + ' is the winner!';
+                    }
                     currentPlayer = 'black';
                 } else {
                     children[i].classList.add('black');
                     currentMoves[i][e.target.id] = 'black';
-                    console.log(this.props.checkForWinner(i, Number(e.target.id), currentMoves, currentPlayer));
+                    if (this.props.checkForWinner(i, Number(e.target.id), currentMoves, currentPlayer)) {
+                        document.getElementById('winner').textContent = currentPlayer + ' is the winner!';
+                    }
                     currentPlayer = 'red';
                 }
                 this.props.changeParenState({ currentPlayer, currentMoves });
