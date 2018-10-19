@@ -10,14 +10,20 @@ class SelectBar extends React.Component {
             if(!children[i].classList.contains('checked')) {
                 children[i].classList.add('checked');
                 var currentPlayer = this.props.parentState.currentPlayer;
+                var currentMoves = this.props.parentState.currentMoves;
                 if (currentPlayer === 'red') {
                     children[i].classList.add('red');
+                    currentMoves[i][e.target.id] = 'red';
+                    console.log(this.props.checkForWinner(i, Number(e.target.id), currentMoves, currentPlayer));
                     currentPlayer = 'black';
                 } else {
                     children[i].classList.add('black');
+                    currentMoves[i][e.target.id] = 'black';
+                    console.log(this.props.checkForWinner(i, Number(e.target.id), currentMoves, currentPlayer));
                     currentPlayer = 'red';
                 }
-                this.props.changeParenState({ currentPlayer });
+                this.props.changeParenState({ currentPlayer, currentMoves });
+                console.log('MOVES>>>>>>>>>', this.props.parentState.currentMoves);
                 break;
             }
         }
