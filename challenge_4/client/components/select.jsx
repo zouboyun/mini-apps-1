@@ -27,7 +27,6 @@ class SelectBar extends React.Component {
                     currentPlayer = 'red';
                 }
                 this.props.changeParenState({ currentPlayer, currentMoves });
-                console.log('MOVES>>>>>>>>>', this.props.parentState.currentMoves);
                 break;
             }
         }
